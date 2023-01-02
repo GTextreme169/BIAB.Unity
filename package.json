@@ -1,7 +1,7 @@
 {
   "name": "com.boxinaboxstudios.libunity",
   "displayName": "BIAB",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "unity": "2021.3",
   "description": "A Set of Useful Scripts and Extension Methods for Unity",
   "keywords": [ "lib", "file", "data" ],
