@@ -15,7 +15,7 @@ namespace BIAB.Unity.Editor
     public class PlayPauseEditor : ScriptableObject
     {
 
-        [MenuItem("Tools/ShortCuts/Play-Pause _END")]
+        [MenuItem("Tools/BIAB/ShortCuts/Play-Pause _END")]
         static void PlayGame()
         {
             if (!EditorApplication.isPlaying) EditorSceneManager.SaveScene(SceneManager.GetActiveScene(), "", false);
