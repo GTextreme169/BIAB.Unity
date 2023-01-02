@@ -28,7 +28,7 @@ namespace BIAB.Unity.Editor
         private Quaternion _valueQuat = new Quaternion();
         private Color _valueColor = new Color();
     #region Toolbar
-        [MenuItem("Tools/PlayerPrefs/Reset")]
+        [MenuItem("Tools/BIAB/PlayerPrefs/Reset")]
         static void ResetPP()
         {
             // Get existing open window or if none, make a new one:
@@ -36,26 +36,36 @@ namespace BIAB.Unity.Editor
             window.Show();
             window._menu = "reset";
         }
-        [MenuItem("Tools/PlayerPrefs/Add")]
+        [MenuItem("Tools/BIAB/PlayerPrefs/Add")]
         static void AddPP()
         {
             ExtendedPlayerPrefsWindow window = (ExtendedPlayerPrefsWindow)EditorWindow.GetWindow(typeof(ExtendedPlayerPrefsWindow));
             window.Show();
             window._menu = "add";
         }
-        [MenuItem("Tools/PlayerPrefs/Edit")]
+        [MenuItem("Tools/BIAB/PlayerPrefs/Edit")]
         static void EditPP()
         {
             ExtendedPlayerPrefsWindow window = (ExtendedPlayerPrefsWindow)EditorWindow.GetWindow(typeof(ExtendedPlayerPrefsWindow));
             window.Show();
             window._menu = "edit";
         }
-        [MenuItem("Tools/PlayerPrefs/Remove")]
+        [MenuItem("Tools/BIAB/PlayerPrefs/Remove")]
         static void RemovePP()
         {
             ExtendedPlayerPrefsWindow window = (ExtendedPlayerPrefsWindow)EditorWindow.GetWindow(typeof(ExtendedPlayerPrefsWindow));
             window.Show();
             window._menu = "remove";
+        }
+        [MenuItem("Tools/BIAB/Help/Wiki")]
+        static void OpenWiki()
+        {
+            Application.OpenURL("https://github.com/GTextreme169/BIAB.Unity/wiki");  
+        }
+        [MenuItem("Tools/BIAB/Help/GitHub")]
+        static void OpenGithub()
+        {
+            Application.OpenURL("https://github.com/GTextreme169/BIAB.Unity");  
         }
 
         #endregion
