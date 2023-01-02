@@ -1,9 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using BIAB.Unity.Other;
 using UnityEngine;
 
-namespace BIAB.Unity
+namespace BIAB.Unity.Managers
 {
     public class InputManager : MonoBehaviour
     {

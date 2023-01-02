@@ -1,10 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using System;
+using System.Collections;
 using System.Collections.Concurrent;
-using System;
 
-namespace BIAB.Unity.DataTypes
+namespace BIAB.Unity.Types
 {
     /// <summary>
     /// Holds Data of Multiple Types in a single Object

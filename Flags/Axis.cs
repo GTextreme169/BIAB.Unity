@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-namespace BIAB.Unity
+﻿namespace BIAB.Unity.Flags
 {
     [System.Flags]
     public enum Axis

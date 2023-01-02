@@ -1,4 +1,4 @@
-﻿using BIAB.DataTypes;
+﻿using BIAB.Unity.Types;
 using UnityEngine;
 
 namespace BIAB.Unity.UI

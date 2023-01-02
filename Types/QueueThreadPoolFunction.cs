@@ -1,7 +1,6 @@
-﻿using System.Collections.Concurrent;
-using System.Threading;
+﻿using System.Threading;
 
-namespace BIAB.Types
+namespace BIAB.Unity.Types
 {
     public class QueueThreadPoolFunction<T,TY>
     {

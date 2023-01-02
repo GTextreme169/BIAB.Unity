@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Threading;
-using UnityEngine;
 
-namespace BIAB.Types
+namespace BIAB.Unity.Types
 {
     [System.Obsolete("Please Use QueueThreadPoolFunction Instead!")]
     public class QueueThreadedFunction<T, TY> : IDisposable

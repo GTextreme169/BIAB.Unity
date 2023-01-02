@@ -1,12 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Threading.Tasks;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Threading.Tasks;
+using BIAB.Unity.Interfaces;
+using UnityEngine;
 
-namespace BIAB.Unity
+namespace BIAB.Unity.Handlers
 {
     public static class FileHandler
     {
@@ -50,7 +50,7 @@ namespace BIAB.Unity
         #region Direct
         #region Bytes
         [System.Obsolete("Upgrade to Async Functions")]
-        public static T ReadFileByte<T>(string Path) where T : ByteSerializable, new()
+        public static T ReadFileByte<T>(string Path) where T : IByteSerializable, new()
         {
             if (File.Exists(Path) == false)
                 return default;
@@ -60,7 +60,7 @@ namespace BIAB.Unity
             return t;
         }
         [System.Obsolete("Upgrade to Async Functions")]
-        public static bool WriteFileByte<T>(string Path, T data) where T : ByteSerializable
+        public static bool WriteFileByte<T>(string Path, T data) where T : IByteSerializable
         {
             PathSetup();
             InUsePaths.Add(Path); // Lock File
@@ -82,7 +82,7 @@ namespace BIAB.Unity
         #endregion
         #region JSON
         [System.Obsolete("Upgrade to Async Functions")]
-        public static T ReadFileJSON<T>(string Path) where T : JSONSerializable, new()
+        public static T ReadFileJSON<T>(string Path) where T : IJsonSerializable, new()
         {
             if (File.Exists(Path) == false)
                 return default;
@@ -92,7 +92,7 @@ namespace BIAB.Unity
             return t;
         }
         [System.Obsolete("Upgrade to Async Functions")]
-        public static bool WriteFileJSON<T>(string Path, T data) where T : JSONSerializable
+        public static bool WriteFileJSON<T>(string Path, T data) where T : IJsonSerializable
         {
             PathSetup();
             InUsePaths.Add(Path); // Lock File
@@ -115,7 +115,7 @@ namespace BIAB.Unity
         #endregion
         #region Async
         #region Bytes
-        public static async void ReadFileByteAsync<T>(string Path, FileCallbackHandler<T> callback) where T : ByteSerializable, new()
+        public static async void ReadFileByteAsync<T>(string Path, FileCallbackHandler<T> callback) where T : IByteSerializable, new()
         {
             if (File.Exists(Path) == false)
                 callback(default);
@@ -130,7 +130,7 @@ namespace BIAB.Unity
             InUsePaths.Remove(Path); // Unlock File
             callback(t);
         }
-        public static async void WriteFileByteAsync<T>(string Path, T data) where T : ByteSerializable
+        public static async void WriteFileByteAsync<T>(string Path, T data) where T : IByteSerializable
         {
             PathSetup();
             while (InUsePaths.Contains(Path))
@@ -150,7 +150,7 @@ namespace BIAB.Unity
         }
         #endregion
         #region JSON
-        public static async void ReadFileJSONAsync<T>(string Path, FileCallbackHandler<T> callback) where T : JSONSerializable, new()
+        public static async void ReadFileJSONAsync<T>(string Path, FileCallbackHandler<T> callback) where T : IJsonSerializable, new()
         {
             if (File.Exists(Path) == false)
                 callback(default);
@@ -165,7 +165,7 @@ namespace BIAB.Unity
             InUsePaths.Remove(Path); // Unlock File
             callback(t);
         }
-        public static async void WriteFileJSONAsync<T>(string Path, T data) where T : JSONSerializable
+        public static async void WriteFileJSONAsync<T>(string Path, T data) where T : IJsonSerializable
         {
             PathSetup();
             while (InUsePaths.Contains(Path))

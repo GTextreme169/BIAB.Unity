@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace BIAB.DataTypes
+namespace BIAB.Unity.Types
 {
     public class UniqueListQueue<T> : IEnumerable<T>
     {

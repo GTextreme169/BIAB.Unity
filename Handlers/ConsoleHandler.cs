@@ -1,8 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace BIAB.Unity
+namespace BIAB.Unity.Handlers
 {
     public static class ConsoleHandler
     {

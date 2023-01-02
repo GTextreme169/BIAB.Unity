@@ -1,6 +1,4 @@
-﻿using JetBrains.Annotations;
-
-namespace BIAB.DataTypes
+﻿namespace BIAB.Unity.Types
 {
     public class TrackedString
     {
@@ -8,7 +6,6 @@ namespace BIAB.DataTypes
         public event OnStringChangeDelegate OnStringChange;
         private string _trackedValue;
         
-        [CanBeNull]
         public string Value
         {
             get => _trackedValue;

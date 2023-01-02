@@ -1,8 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using BIAB.Unity.Handlers;
 using UnityEngine;
 
-namespace BIAB.Unity
+namespace BIAB.Unity.Managers
 {
     public class ErrorManager : MonoBehaviour
     {

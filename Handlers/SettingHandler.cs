@@ -3,7 +3,7 @@ using System.IO;
 using BIAB.Unity.Other;
 using UnityEngine;
 
-namespace BIAB.Unity
+namespace BIAB.Unity.Handlers
 {
     public class SettingHandler
     {

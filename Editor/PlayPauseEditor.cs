@@ -4,8 +4,7 @@
  * Example Bindings: https://docs.unity3d.com/ScriptReference/MenuItem.html
  * Install: Place script under Assets/Editor Folder
  */
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEditor;
