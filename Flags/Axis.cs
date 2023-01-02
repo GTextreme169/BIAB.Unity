@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace BIAB
+namespace BIAB.Unity
 {
     [System.Flags]
     public enum Axis

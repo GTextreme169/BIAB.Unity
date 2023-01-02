@@ -3,16 +3,17 @@ using UnityEditor;
 using System.IO;
 using System.Collections.Generic;
 using System;
+using UnityEngine.Serialization;
 
-namespace BIAB.Editor
+namespace BIAB.Unity.Editor
 {
     public class ToDoScannerWindow : EditorWindow
     {
-        Vector2 scrollPos;
-        bool showHidden = false;
-        static List<TDF> Hidden;
+        private Vector2 _scrollPos;
+        private bool _showHidden = false;
+        private static List<TDF> _hidden;
 
-        static TDF[] ToDoFiles;
+        private static TDF[] _toDoFiles;
 
         // Add menu named "My Window" to the Window menu
         [MenuItem("Window/To Do Files")]
@@ -31,7 +32,7 @@ namespace BIAB.Editor
         public static void OnProjectChanged()
         {
             Refresh();
-            Save(Hidden, ToDoFiles);
+            Save(_hidden, _toDoFiles);
         }
 
         void OnGUI()
@@ -39,46 +40,46 @@ namespace BIAB.Editor
             float w = position.width;
             float wf = w;
             wf = wf / 500f;
-            if (Hidden == null || ToDoFiles == null)
+            if (_hidden == null || _toDoFiles == null)
             {
                 return;
             }
 
             GUILayout.BeginHorizontal();
-            showHidden = EditorGUILayout.Toggle("Show Hidden", showHidden);
+            _showHidden = EditorGUILayout.Toggle("Show Hidden", _showHidden);
             if (GUILayout.Button("Refresh"))
             {
                 Refresh();
             }
             GUILayout.EndHorizontal();
 
-            scrollPos = EditorGUILayout.BeginScrollView(scrollPos);
+            _scrollPos = EditorGUILayout.BeginScrollView(_scrollPos);
             GUI.skin.label.alignment = TextAnchor.MiddleLeft;
-            for (int i = 0; i < ToDoFiles.Length; i++)
+            for (int i = 0; i < _toDoFiles.Length; i++)
             {
-                bool h = Hidden.Contains(ToDoFiles[i]);
-                if (h == false || showHidden)
+                bool h = _hidden.Contains(_toDoFiles[i]);
+                if (h == false || _showHidden)
                 {
 
                     GUILayout.BeginHorizontal();
-                    EditorGUILayout.ObjectField(ToDoFiles[i].FileAsset, typeof(MonoScript), false, GUILayout.Width(100 * wf));
-                    GUILayout.Label("Line: " + ToDoFiles[i].line.ToString(), GUILayout.Width(65));
-                    GUILayout.Label(ToDoFiles[i].Msg, GUILayout.MaxWidth(w - 65 - (wf * 217.5f)));
-                    if (GUILayout.Button("Go To", GUILayout.Width(50 * wf))) AssetDatabase.OpenAsset(ToDoFiles[i].FileAsset, ToDoFiles[i].line);
+                    EditorGUILayout.ObjectField(_toDoFiles[i].FileAsset, typeof(MonoScript), false, GUILayout.Width(100 * wf));
+                    GUILayout.Label("Line: " + _toDoFiles[i].line.ToString(), GUILayout.Width(65));
+                    GUILayout.Label(_toDoFiles[i].msg, GUILayout.MaxWidth(w - 65 - (wf * 217.5f)));
+                    if (GUILayout.Button("Go To", GUILayout.Width(50 * wf))) AssetDatabase.OpenAsset(_toDoFiles[i].FileAsset, _toDoFiles[i].line);
                     if (h)
                     {
                         if (GUILayout.Button("Show", GUILayout.Width(50 * wf)))
                         {
-                            Hidden.Remove(ToDoFiles[i]);
-                            Save(Hidden, ToDoFiles);
+                            _hidden.Remove(_toDoFiles[i]);
+                            Save(_hidden, _toDoFiles);
                         }
                     }
                     else
                     {
                         if (GUILayout.Button("Hide", GUILayout.Width(50 * wf)))
                         {
-                            Hidden.Add(ToDoFiles[i]);
-                            Save(Hidden, ToDoFiles);
+                            _hidden.Add(_toDoFiles[i]);
+                            Save(_hidden, _toDoFiles);
                         }
                     }
                     GUILayout.EndHorizontal();
@@ -94,7 +95,7 @@ namespace BIAB.Editor
         {
 
             Scan();
-            Hidden = Load();
+            _hidden = Load();
         }
 
         static void Save(List<TDF> list, TDF[] confirmedArr)
@@ -103,10 +104,10 @@ namespace BIAB.Editor
             List<string> json = new List<string>();
             List<TDF> confirmed = new List<TDF>();
             confirmed.AddRange(confirmedArr);
-            for (int i = 0; i < list.Count; i++)
+            foreach (var t in list)
             {
-                if (confirmed.Contains(list[i]))
-                    json.Add(JsonUtility.ToJson(list[i]));
+                if (confirmed.Contains(t))
+                    json.Add(JsonUtility.ToJson(t));
             }
 
             File.WriteAllLines(Application.dataPath.Replace("Assets", "hiddenTD.json"), json);
@@ -115,13 +116,13 @@ namespace BIAB.Editor
         static List<TDF> Load()
         {
             string filePath = Application.dataPath.Replace("Assets", "hiddenTD.json");
-            string[] json = new string[0];
+            string[] json = Array.Empty<string>();
             if (File.Exists(filePath))
                 json = File.ReadAllLines(filePath);
             List<TDF> list = new List<TDF>();
-            for (int i = 0; i < json.Length; i++)
+            foreach (var t in json)
             {
-                TDF temp = JsonUtility.FromJson<TDF>(json[i]);
+                TDF temp = JsonUtility.FromJson<TDF>(t);
                 temp.FileAsset = AssetDatabase.LoadAssetAtPath<MonoScript>(temp.file);
                 list.Add(temp);
             }
@@ -140,9 +141,11 @@ namespace BIAB.Editor
                 {
                     if (lines[i].Contains("//TODO") && file.Contains("ToDoScanner") == false)
                     {
-                        TDF tdf = new TDF();
-                        tdf.Msg = lines[i].Replace("//TODO", "").Trim();
-                        tdf.file = "Assets/" + file.Replace(Application.dataPath, "");
+                        TDF tdf = new TDF
+                        {
+                            msg = lines[i].Replace("//TODO", "").Trim(),
+                            file = "Assets/" + file.Replace(Application.dataPath, "")
+                        };
                         tdf.FileAsset = AssetDatabase.LoadAssetAtPath<MonoScript>(tdf.file);
                         tdf.line = (i + 1);
                         tds.Add(tdf);
@@ -150,9 +153,11 @@ namespace BIAB.Editor
                     else
                     if (lines[i].Contains("NotImplementedException") && file.Contains("ToDoScanner") == false)
                     {
-                        TDF tdf = new TDF();
-                        tdf.Msg = "Not Implemented Exception";
-                        tdf.file = "Assets/" + file.Replace(Application.dataPath, "");
+                        TDF tdf = new TDF
+                        {
+                            msg = "Not Implemented Exception",
+                            file = "Assets/" + file.Replace(Application.dataPath, "")
+                        };
                         tdf.FileAsset = AssetDatabase.LoadAssetAtPath<MonoScript>(tdf.file);
                         tdf.line = (i + 1);
                         tds.Add(tdf);
@@ -160,15 +165,16 @@ namespace BIAB.Editor
                 }
             }
 
-            ToDoFiles = tds.ToArray();
-            Hidden = Load();
+            _toDoFiles = tds.ToArray();
+            _hidden = Load();
         }
     }
 
     [Serializable]
     struct TDF
     {
-        public string Msg;
+        [FormerlySerializedAs("Msg")] 
+        public string msg;
         public string file;
         [NonSerialized]
         public MonoScript FileAsset;

@@ -3,11 +3,10 @@
  * Uses: Adds Set/Get/Delete Functions For String,Int,Float,Bool,Vector2,Vector3,Vector4,Quaternion,Enum,SerializedObject,Color
  * Install: Place script anywhere in Asset Folder
  */
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 
-namespace BIAB
+namespace BIAB.Unity.Other
 {
     public static class ExtendedPrefs
     {

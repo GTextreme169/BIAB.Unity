@@ -3,30 +3,30 @@
  * Notes: Will be Overwrite PlayerPref Editor if it is installed
  * Install: Place script under Assets/Editor Folder
  */
-using System.Collections;
-using System.Collections.Generic;
+
+using BIAB.Unity.Other;
 using UnityEngine;
 using UnityEditor;
 
-namespace BIAB.Editor
+namespace BIAB.Unity.Editor
 {
     public class ExtendedPlayerPrefsWindow : EditorWindow
     {
-        string menu = "";
-        int fieldWidth = 150;
+        private string _menu = "";
+        private int _fieldWidth = 150;
 
         // Add/Remove Pref
-        int variableTypeInt = 0;
-        string variableName = "";
-        bool valueBool = false;
-        string valueString = "";
-        int valueInt = 0;
-        float valueFloat = 0;
-        Vector2 valueVector2 = new Vector2();
-        Vector3 valueVector3 = new Vector3();
-        Vector4 valueVector4 = new Vector4();
-        Quaternion valueQuat = new Quaternion();
-        Color valueColor = new Color();
+        private int _variableTypeInt = 0;
+        private string _variableName = "";
+        private bool _valueBool = false;
+        private string _valueString = "";
+        private int _valueInt = 0;
+        private float _valueFloat = 0;
+        private Vector2 _valueVector2 = new Vector2();
+        private Vector3 _valueVector3 = new Vector3();
+        private Vector4 _valueVector4 = new Vector4();
+        private Quaternion _valueQuat = new Quaternion();
+        private Color _valueColor = new Color();
     #region Toolbar
         [MenuItem("Tools/PlayerPrefs/Reset")]
         static void ResetPP()
@@ -34,28 +34,28 @@ namespace BIAB.Editor
             // Get existing open window or if none, make a new one:
             ExtendedPlayerPrefsWindow window = (ExtendedPlayerPrefsWindow)EditorWindow.GetWindow(typeof(ExtendedPlayerPrefsWindow));
             window.Show();
-            window.menu = "reset";
+            window._menu = "reset";
         }
         [MenuItem("Tools/PlayerPrefs/Add")]
         static void AddPP()
         {
             ExtendedPlayerPrefsWindow window = (ExtendedPlayerPrefsWindow)EditorWindow.GetWindow(typeof(ExtendedPlayerPrefsWindow));
             window.Show();
-            window.menu = "add";
+            window._menu = "add";
         }
         [MenuItem("Tools/PlayerPrefs/Edit")]
         static void EditPP()
         {
             ExtendedPlayerPrefsWindow window = (ExtendedPlayerPrefsWindow)EditorWindow.GetWindow(typeof(ExtendedPlayerPrefsWindow));
             window.Show();
-            window.menu = "edit";
+            window._menu = "edit";
         }
         [MenuItem("Tools/PlayerPrefs/Remove")]
         static void RemovePP()
         {
             ExtendedPlayerPrefsWindow window = (ExtendedPlayerPrefsWindow)EditorWindow.GetWindow(typeof(ExtendedPlayerPrefsWindow));
             window.Show();
-            window.menu = "remove";
+            window._menu = "remove";
         }
 
         #endregion
@@ -63,7 +63,7 @@ namespace BIAB.Editor
         
         void OnGUI()
         {
-            switch (menu)
+            switch (_menu)
             {
                 case "reset":
                     ResetGUI();
@@ -165,31 +165,31 @@ namespace BIAB.Editor
             switch (variableType)
             {
                 case VariableTypes.String:
-                    ExtendedPrefs.DeleteString(variableName);
+                    ExtendedPrefs.DeleteString(_variableName);
                     break;
                 case VariableTypes.Integer:
-                    ExtendedPrefs.DeleteInt(variableName);
+                    ExtendedPrefs.DeleteInt(_variableName);
                     break;
                 case VariableTypes.Float:
-                    ExtendedPrefs.DeleteFloat(variableName);
+                    ExtendedPrefs.DeleteFloat(_variableName);
                     break;
                 case VariableTypes.Boolean:
-                    ExtendedPrefs.DeleteBool(variableName);
+                    ExtendedPrefs.DeleteBool(_variableName);
                     break;
                 case VariableTypes.Vector2:
-                    ExtendedPrefs.DeleteVector2(variableName);
+                    ExtendedPrefs.DeleteVector2(_variableName);
                     break;
                 case VariableTypes.Vector3:
-                    ExtendedPrefs.DeleteVector3(variableName);
+                    ExtendedPrefs.DeleteVector3(_variableName);
                     break;
                 case VariableTypes.Vector4:
-                    ExtendedPrefs.DeleteVector4(variableName);
+                    ExtendedPrefs.DeleteVector4(_variableName);
                     break;
                 case VariableTypes.Quaternion:
-                    ExtendedPrefs.DeleteQuaternion(variableName);
+                    ExtendedPrefs.DeleteQuaternion(_variableName);
                     break;
                 case VariableTypes.Color:
-                    ExtendedPrefs.DeleteColor(variableName);
+                    ExtendedPrefs.DeleteColor(_variableName);
                     break;
             }
         }
@@ -199,31 +199,31 @@ namespace BIAB.Editor
                 switch (variableType)
                 {
                     case VariableTypes.String:
-                        ExtendedPrefs.SetString(variableName, valueString);
+                        ExtendedPrefs.SetString(_variableName, _valueString);
                         break;
                     case VariableTypes.Integer:
-                        ExtendedPrefs.SetInt(variableName, valueInt);
+                        ExtendedPrefs.SetInt(_variableName, _valueInt);
                         break;
                     case VariableTypes.Float:
-                        ExtendedPrefs.SetFloat(variableName, valueFloat);
+                        ExtendedPrefs.SetFloat(_variableName, _valueFloat);
                         break;
                     case VariableTypes.Boolean:
-                        ExtendedPrefs.SetBool(variableName, valueBool);
+                        ExtendedPrefs.SetBool(_variableName, _valueBool);
                         break;
                     case VariableTypes.Vector2:
-                        ExtendedPrefs.SetVector2(variableName, valueVector2);
+                        ExtendedPrefs.SetVector2(_variableName, _valueVector2);
                         break;
                     case VariableTypes.Vector3:
-                        ExtendedPrefs.SetVector3(variableName, valueVector3);
+                        ExtendedPrefs.SetVector3(_variableName, _valueVector3);
                         break;
                     case VariableTypes.Vector4:
-                        ExtendedPrefs.SetVector4(variableName, valueVector4);
+                        ExtendedPrefs.SetVector4(_variableName, _valueVector4);
                         break;
                     case VariableTypes.Quaternion:
-                        ExtendedPrefs.SetQuaternion(variableName, valueQuat);
+                        ExtendedPrefs.SetQuaternion(_variableName, _valueQuat);
                         break;
                     case VariableTypes.Color:
-                        ExtendedPrefs.SetColor(variableName, valueColor);
+                        ExtendedPrefs.SetColor(_variableName, _valueColor);
                         break;
                 }
             }
@@ -233,31 +233,31 @@ namespace BIAB.Editor
             switch (variableType)
             {
                 case VariableTypes.String:
-                    valueString = ExtendedPrefs.GetString(variableName, valueString);
+                    _valueString = ExtendedPrefs.GetString(_variableName, _valueString);
                     break;
                 case VariableTypes.Integer:
-                    valueInt = ExtendedPrefs.GetInt(variableName, valueInt);
+                    _valueInt = ExtendedPrefs.GetInt(_variableName, _valueInt);
                     break;
                 case VariableTypes.Float:
-                    valueFloat = ExtendedPrefs.GetFloat(variableName, valueFloat);
+                    _valueFloat = ExtendedPrefs.GetFloat(_variableName, _valueFloat);
                     break;
                 case VariableTypes.Boolean:
-                    valueBool = ExtendedPrefs.GetBool(variableName, valueBool);
+                    _valueBool = ExtendedPrefs.GetBool(_variableName, _valueBool);
                     break;
                 case VariableTypes.Vector2:
-                    valueVector2 = ExtendedPrefs.GetVector2(variableName, valueVector2);
+                    _valueVector2 = ExtendedPrefs.GetVector2(_variableName, _valueVector2);
                     break;
                 case VariableTypes.Vector3:
-                    valueVector3 = ExtendedPrefs.GetVector3(variableName, valueVector3);
+                    _valueVector3 = ExtendedPrefs.GetVector3(_variableName, _valueVector3);
                     break;
                 case VariableTypes.Vector4:
-                    valueVector4 = ExtendedPrefs.GetVector4(variableName, valueVector4);
+                    _valueVector4 = ExtendedPrefs.GetVector4(_variableName, _valueVector4);
                     break;
                 case VariableTypes.Quaternion:
-                    valueQuat = ExtendedPrefs.GetQuaternion(variableName, valueQuat);
+                    _valueQuat = ExtendedPrefs.GetQuaternion(_variableName, _valueQuat);
                     break;
                 case VariableTypes.Color:
-                    valueColor = ExtendedPrefs.GetColor(variableName, valueColor);
+                    _valueColor = ExtendedPrefs.GetColor(_variableName, _valueColor);
                     break;
             }
         }
@@ -266,21 +266,21 @@ namespace BIAB.Editor
         {
             GUILayout.BeginHorizontal();
             
-            if (GUILayout.Button(((VariableTypes)variableTypeInt).ToString()))
-                variableTypeInt++;
+            if (GUILayout.Button(((VariableTypes)_variableTypeInt).ToString()))
+                _variableTypeInt++;
             
             // No Overflow
-            if (variableTypeInt > 8) variableTypeInt = 0;
+            if (_variableTypeInt > 8) _variableTypeInt = 0;
             
             GUILayout.EndHorizontal(); 
-            return (VariableTypes)variableTypeInt;
+            return (VariableTypes)_variableTypeInt;
         }
 
         void NameField()
         {
             GUILayout.BeginHorizontal();
             GUILayout.Label("Name: ");
-            variableName = EditorGUILayout.TextField(variableName, GUILayout.Width(fieldWidth));
+            _variableName = EditorGUILayout.TextField(_variableName, GUILayout.Width(_fieldWidth));
             GUILayout.EndHorizontal();
         }
 
@@ -325,98 +325,98 @@ namespace BIAB.Editor
         void ShowEditBoolean()
         {
             GUILayout.Label("Value: ");
-            valueBool = EditorGUILayout.Toggle(valueBool);
+            _valueBool = EditorGUILayout.Toggle(_valueBool);
         }
         
         void ShowEditString()
         {
             GUILayout.Label("Value: ");
-            valueString = EditorGUILayout.TextField(valueString, GUILayout.Width(fieldWidth));
+            _valueString = EditorGUILayout.TextField(_valueString, GUILayout.Width(_fieldWidth));
         }
         void ShowEditInt()
         {
             GUILayout.Label("Value: ");
-            valueString = EditorGUILayout.TextField(valueString, GUILayout.Width(fieldWidth));
-            int.TryParse(valueString, out valueInt);
+            _valueString = EditorGUILayout.TextField(_valueString, GUILayout.Width(_fieldWidth));
+            int.TryParse(_valueString, out _valueInt);
             
         }
         void ShowEditFloat()
         {
             GUILayout.Label("Value: ");
-            valueString = EditorGUILayout.TextField(valueString, GUILayout.Width(fieldWidth));
-            float.TryParse(valueString, out valueFloat);
+            _valueString = EditorGUILayout.TextField(_valueString, GUILayout.Width(_fieldWidth));
+            float.TryParse(_valueString, out _valueFloat);
         }
 
         void ShowEditVector2()
         {
             GUILayout.Label("x: ");
-            valueString = EditorGUILayout.TextField(valueString, GUILayout.Width(fieldWidth / 2));
-            float.TryParse(valueString, out valueVector2.x);
+            _valueString = EditorGUILayout.TextField(_valueString, GUILayout.Width(_fieldWidth / 2));
+            float.TryParse(_valueString, out _valueVector2.x);
             GUILayout.Label("y: ");
-            valueString = EditorGUILayout.TextField(valueString, GUILayout.Width(fieldWidth / 2));
-            float.TryParse(valueString, out valueVector2.y);
+            _valueString = EditorGUILayout.TextField(_valueString, GUILayout.Width(_fieldWidth / 2));
+            float.TryParse(_valueString, out _valueVector2.y);
             
         }
         void ShowEditVector3()
         {
             GUILayout.Label("x: ");
-            valueString = EditorGUILayout.TextField(valueString, GUILayout.Width(fieldWidth / 3));
-            float.TryParse(valueString, out valueVector3.x);
+            _valueString = EditorGUILayout.TextField(_valueString, GUILayout.Width(_fieldWidth / 3));
+            float.TryParse(_valueString, out _valueVector3.x);
             GUILayout.Label("y: ");
-            valueString = EditorGUILayout.TextField(valueString, GUILayout.Width(fieldWidth / 3));
-            float.TryParse(valueString, out valueVector3.y);
+            _valueString = EditorGUILayout.TextField(_valueString, GUILayout.Width(_fieldWidth / 3));
+            float.TryParse(_valueString, out _valueVector3.y);
             GUILayout.Label("z: ");
-            valueString = EditorGUILayout.TextField(valueString, GUILayout.Width(fieldWidth / 3));
-            float.TryParse(valueString, out valueVector3.z);
+            _valueString = EditorGUILayout.TextField(_valueString, GUILayout.Width(_fieldWidth / 3));
+            float.TryParse(_valueString, out _valueVector3.z);
             
         }
         void ShowEditVector4()
         {
             GUILayout.Label("x: ");
-            valueString = EditorGUILayout.TextField(valueString, GUILayout.Width(fieldWidth / 4));
-            float.TryParse(valueString, out valueVector4.x);
+            _valueString = EditorGUILayout.TextField(_valueString, GUILayout.Width(_fieldWidth / 4));
+            float.TryParse(_valueString, out _valueVector4.x);
             GUILayout.Label("y: ");
-            valueString = EditorGUILayout.TextField(valueString, GUILayout.Width(fieldWidth / 4));
-            float.TryParse(valueString, out valueVector4.y);
+            _valueString = EditorGUILayout.TextField(_valueString, GUILayout.Width(_fieldWidth / 4));
+            float.TryParse(_valueString, out _valueVector4.y);
             GUILayout.Label("z: ");
-            valueString = EditorGUILayout.TextField(valueString, GUILayout.Width(fieldWidth / 4));
-            float.TryParse(valueString, out valueVector4.z);
+            _valueString = EditorGUILayout.TextField(_valueString, GUILayout.Width(_fieldWidth / 4));
+            float.TryParse(_valueString, out _valueVector4.z);
             GUILayout.Label("w: ");
-            valueString = EditorGUILayout.TextField(valueString, GUILayout.Width(fieldWidth / 4));
-            float.TryParse(valueString, out valueVector4.w);
+            _valueString = EditorGUILayout.TextField(_valueString, GUILayout.Width(_fieldWidth / 4));
+            float.TryParse(_valueString, out _valueVector4.w);
         }
 
         void ShowEditQuaternion()
         {
             GUILayout.Label("x: ");
-            valueString = EditorGUILayout.TextField(valueString, GUILayout.Width(fieldWidth / 4));
-            float.TryParse(valueString, out valueQuat.x);
+            _valueString = EditorGUILayout.TextField(_valueString, GUILayout.Width(_fieldWidth / 4));
+            float.TryParse(_valueString, out _valueQuat.x);
             GUILayout.Label("y: ");
-            valueString = EditorGUILayout.TextField(valueString, GUILayout.Width(fieldWidth / 4));
-            float.TryParse(valueString, out valueQuat.y);
+            _valueString = EditorGUILayout.TextField(_valueString, GUILayout.Width(_fieldWidth / 4));
+            float.TryParse(_valueString, out _valueQuat.y);
             GUILayout.Label("z: ");
-            valueString = EditorGUILayout.TextField(valueString, GUILayout.Width(fieldWidth / 4));
-            float.TryParse(valueString, out valueQuat.z);
+            _valueString = EditorGUILayout.TextField(_valueString, GUILayout.Width(_fieldWidth / 4));
+            float.TryParse(_valueString, out _valueQuat.z);
             GUILayout.Label("w: ");
-            valueString = EditorGUILayout.TextField(valueString, GUILayout.Width(fieldWidth / 4));
-            float.TryParse(valueString, out valueQuat.w);
+            _valueString = EditorGUILayout.TextField(_valueString, GUILayout.Width(_fieldWidth / 4));
+            float.TryParse(_valueString, out _valueQuat.w);
         }
         
 
         void ShowEditColor()
         {
             GUILayout.Label("r: ");
-            valueString = EditorGUILayout.TextField(valueString, GUILayout.Width(fieldWidth / 4));
-            float.TryParse(valueString, out valueColor.r);
+            _valueString = EditorGUILayout.TextField(_valueString, GUILayout.Width(_fieldWidth / 4));
+            float.TryParse(_valueString, out _valueColor.r);
             GUILayout.Label("g: ");
-            valueString = EditorGUILayout.TextField(valueString, GUILayout.Width(fieldWidth / 4));
-            float.TryParse(valueString, out valueColor.g);
+            _valueString = EditorGUILayout.TextField(_valueString, GUILayout.Width(_fieldWidth / 4));
+            float.TryParse(_valueString, out _valueColor.g);
             GUILayout.Label("b: ");
-            valueString = EditorGUILayout.TextField(valueString, GUILayout.Width(fieldWidth / 4));
-            float.TryParse(valueString, out valueColor.b);
+            _valueString = EditorGUILayout.TextField(_valueString, GUILayout.Width(_fieldWidth / 4));
+            float.TryParse(_valueString, out _valueColor.b);
             GUILayout.Label("a: ");
-            valueString = EditorGUILayout.TextField(valueString, GUILayout.Width(fieldWidth / 4));
-            float.TryParse(valueString, out valueColor.a);
+            _valueString = EditorGUILayout.TextField(_valueString, GUILayout.Width(_fieldWidth / 4));
+            float.TryParse(_valueString, out _valueColor.a);
         }
         
         #endregion

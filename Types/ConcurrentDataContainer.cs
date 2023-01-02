@@ -4,7 +4,7 @@ using UnityEngine;
 using System.Collections.Concurrent;
 using System;
 
-namespace BIAB.DataTypes
+namespace BIAB.Unity.DataTypes
 {
     /// <summary>
     /// Holds Data of Multiple Types in a single Object

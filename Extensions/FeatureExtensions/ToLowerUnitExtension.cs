@@ -1,7 +1,8 @@
-﻿using Unity.Mathematics;
+﻿#if UNITY_MATHEMATICS
+using Unity.Mathematics;
 using UnityEngine;
 
-namespace BIAB.Extensions
+namespace BIAB.Unity.Extensions
 {
     public static class ToLowerUnitExtension
     {
@@ -36,3 +37,4 @@ namespace BIAB.Extensions
         }
     }
 }
+#endif

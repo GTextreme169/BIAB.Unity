@@ -1,4 +1,4 @@
-﻿namespace BIAB.Mathematics
+﻿namespace BIAB.Unity.Types.Mathematics
 {
     /// <summary>
     /// 3 sbyte (-128 to 127)

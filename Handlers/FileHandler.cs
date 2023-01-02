@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 
-namespace BIAB
+namespace BIAB.Unity
 {
     public static class FileHandler
     {

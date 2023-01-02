@@ -1,8 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace BIAB.Other.Hidden
+namespace BIAB.Unity.MonoBehaviours
 {
     public class DontDestroyOnLoad : MonoBehaviour
     {

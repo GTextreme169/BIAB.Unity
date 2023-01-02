@@ -1,9 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using Unity.Mathematics;
+﻿using BIAB.Unity.Other;
 using UnityEngine;
 
-namespace BIAB
+namespace BIAB.Unity.Extensions
 {
     public static class ExtendedPrefsExtensions
     {

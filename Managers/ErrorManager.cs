@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace BIAB
+namespace BIAB.Unity
 {
     public class ErrorManager : MonoBehaviour
     {

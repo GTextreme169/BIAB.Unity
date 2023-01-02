@@ -3,7 +3,7 @@ using UnityEditor;
 using System.Collections.Generic;
 using System;
 
-namespace BIAB.Editor
+namespace BIAB.Unity.Editor
 {
     public class MultiBuild : EditorWindow
     {

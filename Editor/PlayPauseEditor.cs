@@ -11,7 +11,7 @@ using UnityEngine.SceneManagement;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 
-namespace BIAB.Editor
+namespace BIAB.Unity.Editor
 {
     public class PlayPauseEditor : ScriptableObject
     {

@@ -1,7 +1,10 @@
-﻿using Unity.Mathematics;
+﻿#if UNITY_MATHEMATICS
+
+using BIAB.Unity.Enums;
+using Unity.Mathematics;
 using UnityEngine;
 
-namespace BIAB
+namespace BIAB.Unity.Extensions
 {
     public static class Int3Extensions
     {
@@ -9,19 +12,19 @@ namespace BIAB
         {
             switch (d)
             {
-                case Direction.backward:
+                case Direction.Backward:
                     return a.Backward();
-                case Direction.forward:
+                case Direction.Forward:
                     return a.Forward();
-                case Direction.up:
+                case Direction.Up:
                     return a.Up();
-                case Direction.down:
+                case Direction.Down:
                     return a.Down();
-                case Direction.left:
+                case Direction.Left:
                     return a.Left();
-                case Direction.right:
+                case Direction.Right:
                     return a.Right();
-                case Direction.none:
+                case Direction.None:
                     return a;
                 default:
                     Debug.LogError("Failed To Find Case For Direction");
@@ -63,5 +66,16 @@ namespace BIAB
             a.z -= z;
             return a;
         }
+
+        public static int3 Normalize(this int3 input, int normalization)
+        {
+            return (input / normalization) * normalization;
+        }
+
+        public static int3 Normalize(this int3 input, int3 normalization)
+        {
+            return (input / normalization) * normalization;
+        }
     }
 }
+#endif

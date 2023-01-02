@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace BIAB
+namespace BIAB.Unity.Extensions
 {
     public static class Vector3Extensions
     {

@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using BIAB.Unity.Other;
 using UnityEngine;
 
-namespace BIAB
+namespace BIAB.Unity
 {
     public class SettingHandler
     {

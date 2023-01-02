@@ -9,7 +9,7 @@ using UnityEngine;
 using UnityEditor;
 
 #if ExtendedPlayerPrefsWindow_EXISTS
-namespace BIAB.Editor 
+namespace BIAB.Unity.Editor 
 {
 public class PlayerPrefsWindow : EditorWindow {
     string menu = "";

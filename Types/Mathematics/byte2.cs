@@ -1,4 +1,4 @@
-﻿namespace BIAB.Mathematics
+﻿namespace BIAB.Unity.Types.Mathematics
 {
     /// <summary>
     /// 2 byte (0 to 255)

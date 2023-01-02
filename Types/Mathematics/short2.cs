@@ -1,4 +1,4 @@
-﻿namespace BIAB.Mathematics
+﻿namespace BIAB.Unity.Types.Mathematics
 {
     /// <summary>
     /// 2 short (-32,768 to 32,767)

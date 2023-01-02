@@ -1,11 +1,7 @@
 ﻿using UnityEngine;
-using UnityEditor;
-using System.Collections;
-using UnityEditor.SceneManagement;
-using UnityEngine.SceneManagement;
 using System.Diagnostics;
 
-namespace BIAB.Editor
+namespace BIAB.Unity.Editor
 {
     public class ExtendShortCuts
     {

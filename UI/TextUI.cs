@@ -1,36 +1,39 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using BIAB.DataTypes;
 using UnityEngine;
-using BIAB.DataTypes;
 
-public class TextUI : MonoBehaviour
+namespace BIAB.Unity.UI
 {
-    private UnityEngine.UI.Text unityTextComponent;
-    /// <summary>
-    /// Start is called on the frame when a script is enabled just before
-    /// any of the Update methods is called the first time.
-    /// </summary>
-    void Start()
+    public class TextUI : MonoBehaviour
     {
-        unityTextComponent = GetComponent<UnityEngine.UI.Text>();
-    }
+        private UnityEngine.UI.Text _unityTextComponent;
+        /// <summary>
+        /// Start is called on the frame when a script is enabled just before
+        /// any of the Update methods is called the first time.
+        /// </summary>
+        void Start()
+        {
+            _unityTextComponent = GetComponent<UnityEngine.UI.Text>();
+        }
 
-    [Sirenix.OdinInspector.Button]
-    public void Test()
-    {
-        sString textObject = "Start";
-        Assign(ref textObject);
-        textObject.variable = "s";
-    }
+#if ODIN_INSPECTOR
+        [Sirenix.OdinInspector.Button]
+        public void Test()
+        {
+            TrackedString textObject = "Start";
+            Assign(ref textObject);
+            textObject.Value = "s";
+        }
+#endif
 
-    public void Assign(ref sString text)
-    {
-        text.OnStringChange += OnVariableChange;
-        OnVariableChange(text);
-    }
+        public void Assign(ref TrackedString text)
+        {
+            text.OnStringChange += OnVariableChange;
+            OnVariableChange(text);
+        }
 
-    private void OnVariableChange(string text)
-    {
-        unityTextComponent.text = text;
+        private void OnVariableChange(string text)
+        {
+            _unityTextComponent.text = text;
+        }
     }
 }
